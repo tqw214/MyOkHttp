@@ -1,6 +1,7 @@
 package com.viger.okhttp;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call call, Throwable throwable) {
-
+                Log.d("log","MainActivity onFailure ");
             }
 
             @Override
             public void onResponse(Call call, Response response) {
-
+                Log.d("log","MainActivity response body: "+response.getBody());
             }
         });
 
@@ -50,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
     class MyInterceptor implements Interceptor {
         @Override
         public Response intercept(InterceptorChain chain) throws IOException {
-
-            return null;
+            Log.d("log","自定义的intercept: ===》");
+            return chain.proceed();
         }
     }
 
